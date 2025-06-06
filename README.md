@@ -1,8 +1,8 @@
-# 🎈 Blank app template
+# 🎈 Greenhouse Insights
 
-A simple Streamlit app template for you to modify!
+Focusing on the theme **Nature's Fury** this app leverages [streamlit](https://streamlit.io/cloud) and [Google Gemini](https://ai.google.dev/gemini-api/docs) to analyze annual greenhouse gas air emissions by activity and by region.  The dataset used is called [Annual Greenhouse Gas (GHG) Air Emissions Accounts](https://climatedata.imf.org/datasets/c8579761f19740dfbe4418b205654ddf/explore?showTable=true).
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://spanaapp.streamlit.app/)
 
 ### How to run it on your own machine
 
@@ -15,5 +15,6 @@ A simple Streamlit app template for you to modify!
 2. Run the app
 
    ```
-   $ streamlit run streamlit_app.py
+   $ streamlit run About.py
+   ```
    ```
