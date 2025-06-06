@@ -21,6 +21,15 @@ APP_FILTERS = 'Filters'
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
+"""
+Load data
+"""
+@st.cache_data
+def load_data(data_file):
+    data = pd.read_excel(data_file)
+    return data
+
+green_df = load_data("greenhouse.xlsx")
 
 """
 Filters
@@ -75,3 +84,5 @@ industry = ['Agriculture, Forestry and Fishing',
 'Total Industry and Households',
 'Transportation and Storage',
 'Water supply; sewerage, waste management and remediation activities']
+
+
