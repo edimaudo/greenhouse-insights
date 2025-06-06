@@ -12,7 +12,7 @@ st.header(CARBON_CHRONICLES_HEADER)
 
 st.markdown(
     """
-    CO₂ continues to be the most infamous greenhouse gas. This story highlights how different industries have contributed to its steady rise, with alarming trends in energy and transport..
+    CO₂ continues to be the most infamous greenhouse gas. This story highlights how different industries have contributed to its steady rise, with alarming trends in energy and transport.
     """
 )
 

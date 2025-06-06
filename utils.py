@@ -16,7 +16,7 @@ APP_NAME = 'Greenhouse Insights'
 ABOUT_HEADER = 'About'
 PLANET_HEATER_HEADER = "Who's Heating the Planet? Emissions by Region and Sector"
 CARBON_CHRONICLES_HEADER = 'Carbon Chronicles: Rise of CO₂ Across Industries'
-BREAKING_POINT_HEADER = 'Breaking Point: Which Regions Are Nearing Climate Thresholds?'
+GREENER_FASTER_HEADER = 'Greener, Faster: Who’s Leading the Emission Efficiency Race?'
 APP_FILTERS = 'Filters'
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
