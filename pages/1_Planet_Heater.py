@@ -4,6 +4,7 @@ from utils import *
 st.set_page_config(
     page_title=" 🌍Planet Heater",
     page_icon="🌍",
+    layout="wide"
 )
 
 st.title(APP_NAME)
