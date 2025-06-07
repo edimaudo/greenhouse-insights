@@ -1,11 +1,7 @@
 import config
 from utils import *
 
-st.set_page_config(
-    page_title=" 🌍Planet Heater",
-    page_icon="🌍",
-    layout="wide"
-)
+
 
 st.title(APP_NAME)
 st.header(PLANET_HEATER_HEADER)
@@ -21,20 +17,19 @@ with st.sidebar:
     gas_type_selection = st.multiselect('Gas Type',gas_type,default=['Carbon dioxide','Nitrous oxide'],placeholder=None)
     industry_selection = st.multiselect('Industry',industry,default=['Agriculture, Forestry and Fishing','Construction'],placeholder=None)
 
-
-
 top_container = st.container()
-bottom_container = st.container()
 middle_container = st.container()
+bottom_container = st.container()
+prompt_container = st.container()
 
-with top_container():
+with top_container:
     st.subheader("Total GHG emissions")
     col1, col2 = st.columns(2)
 
-with middle_container():
+with middle_container:
     st.subheader("Emissions by region and industry")
-    col1, col2 = st.columns(2)
+    col3, col4 = st.columns(2)
 
-with bottom_container():
-    st.subheader("Total GHG emissions")
-    col1, col2 = st.columns(2)
+with bottom_container:
+    st.subheader("Emissions Trend")
+    col5, col6 = st.columns(2)

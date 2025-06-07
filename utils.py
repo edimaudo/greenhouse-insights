@@ -20,6 +20,11 @@ GREENER_FASTER_HEADER = 'Greener, Faster: Who’s Leading the Emission Efficienc
 APP_FILTERS = 'Filters'
 
 warnings.simplefilter(action='ignore', category=FutureWarning)
+st.set_page_config(
+    page_title=APP_NAME,
+    page_icon="🌍",
+    layout="wide"
+)
 
 """
 Load data

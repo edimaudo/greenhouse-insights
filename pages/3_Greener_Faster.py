@@ -1,11 +1,11 @@
 import config
 from utils import *
 
-st.set_page_config(
-    page_title=" 🔍 Greener Faster",
-    page_icon="🔍",
-    layout="wide"
-)
+#st.set_page_config(
+#    page_title=" 🔍 Greener Faster",
+#    page_icon="🔍",
+#    layout="wide"
+#)
 
 st.title(APP_NAME)
 st.header(GREENER_FASTER_HEADER)
