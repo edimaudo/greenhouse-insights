@@ -1,4 +1,9 @@
 import streamlit as st
 
-pg = st.navigation(["About.py", "Planet_Heater.py","Carbon_Chronicles.py","Greener_Faster.py"])
+pg = st.navigation([
+    st.Page("About.py", icon="💬"),
+    st.Page("Planet_Heater.py", icon="🌍"),
+    st.Page("Carbon_Chronicles.py", icon="🔥"),
+    st.Page("Greener_Faster.py", icon="🔍"),
+])
 pg.run()
