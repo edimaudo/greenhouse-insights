@@ -3,11 +3,12 @@ Libraries
 """
 import streamlit as st
 import pandas as pd
-#import plotly.express as px
 import datetime
 import os, os.path
 import warnings
 import random
+import plotly.express as px
+import plotly.graph_objects as go
 
 """
 Dashboard Information
@@ -32,6 +33,7 @@ Load data
 @st.cache_data
 def load_data(data_file):
     data = pd.read_excel(data_file)
+    data['Year'] = pd.to_numeric(data['Year'])
     return data
 
 green_df = load_data("greenhouse.xlsx")
