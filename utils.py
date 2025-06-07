@@ -41,6 +41,25 @@ gas_type = ['Carbon dioxide',
 'Methane',
 'Nitrous oxide']
 
+continent = ['Africa',
+'Asia',
+'Europe',
+'Latin America and the Caribbean',
+'Northern America',
+'Oceania']
+
+industry = ['Agriculture, Forestry and Fishing',
+'Construction',
+'Electricity, Gas, Steam and Air Conditioning Supply',
+'Manufacturing',
+'Mining',
+'Other Services Industries',
+'Total Households',
+'Total Industry and Households',
+'Transportation and Storage',
+'Water supply; sewerage, waste management and remediation activities']
+
+
 geographical_area = ['Advanced Economies',
 'Africa',
 'Americas',
@@ -66,23 +85,3 @@ geographical_area = ['Advanced Economies',
 'Western Asia',
 'Western Europe',
 'World']
-
-continent = ['Africa',
-'Asia',
-'Europe',
-'Latin America and the Caribbean',
-'Northern America',
-'Oceania']
-
-industry = ['Agriculture, Forestry and Fishing',
-'Construction',
-'Electricity, Gas, Steam and Air Conditioning Supply',
-'Manufacturing',
-'Mining',
-'Other Services Industries',
-'Total Households',
-'Total Industry and Households',
-'Transportation and Storage',
-'Water supply; sewerage, waste management and remediation activities']
-
-
