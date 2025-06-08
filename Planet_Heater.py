@@ -22,7 +22,6 @@ filtered_df = green_df[
     (green_df['Industry'].isin(industry_selection))
 ]
 
-st.subheader("Total GHG Emissions")
 top_container = st.container()
 middle_container = st.container()
 bottom_container = st.container()
@@ -59,7 +58,7 @@ with top_container:
             st.warning(NO_DATA_INFO)
 
 
-with middle_container:
+with bottom_container:
     sankey_data = filtered_df.groupby(['Region', 'Industry'])['Total'].sum().reset_index()
     if not emissions_by_industry.empty:
         all_nodes = list(pd.concat([sankey_data['Region'], sankey_data['Industry']]).unique())
@@ -69,7 +68,7 @@ with middle_container:
         fig_sankey = go.Figure(data=[go.Sankey(
             node=dict(
             pad=15,
-            thickness=20,
+            thickness=15,
             line=dict(color="black", width=0.5),
             label=all_nodes,
             ),
@@ -79,12 +78,12 @@ with middle_container:
             value=sankey_data['Total']
         ))])
 
-        fig_sankey.update_layout(title_text="GHG Emissions: Region to Industry Flow (metric tons)", font_size=10)
+        fig_sankey.update_layout(title_text="Emissions: Region to Industry flow (metric tons)", font_size=12)
         st.plotly_chart(fig_sankey, use_container_width=True)
     else:
         st.warning(NO_DATA_INFO)
 
-with bottom_container:
+with middle_container:
     col1, col2 = st.columns(2)
     with col1:
         region_by_year = filtered_df.groupby(['Year', 'Region'])['Total'].sum().reset_index()

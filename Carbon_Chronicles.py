@@ -21,7 +21,6 @@ filtered_df = green_df[
     (green_df['Industry'].isin(industry_selection))
 ]
 
-st.header("CO₂ Emissions")
 top_container = st.container()
 middle_container = st.container()
 bottom_container = st.container()
@@ -46,7 +45,7 @@ with top_container:
             st.warning(NO_DATA_INFO)
     
     with col2:
-        region_by_year = filtered_df.groupby(['Year', 'region'])['emissions'].sum().reset_index()
+        region_by_year = filtered_df.groupby(['Year', 'Region'])['Total'].sum().reset_index()
         if not region_by_year.empty:
             fig_area_region = px.area(
                 region_by_year,
