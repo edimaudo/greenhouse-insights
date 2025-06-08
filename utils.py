@@ -42,7 +42,6 @@ green_df = load_data("greenhouse.xlsx")
 """
 Filters
 """
-
 gas_type = ['Carbon dioxide',
 'Fluorinated gases',
 'Greenhouse gas',
