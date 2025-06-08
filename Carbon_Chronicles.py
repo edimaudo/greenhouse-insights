@@ -15,3 +15,7 @@ with st.sidebar:
     industry_selection = st.multiselect('Industry',industry,default=['Agriculture, Forestry and Fishing','Construction'],placeholder=None)
 
 
+top_container = st.container()
+middle_container = st.container()
+bottom_container = st.container()
+prompt_container = st.container()
