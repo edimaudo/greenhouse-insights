@@ -1,10 +1,4 @@
-import streamlit as st
 from utils import *
-
-#st.set_page_config(
-#    page_title="👋 About",
-#    page_icon="👋",
-#)
 
 st.title(APP_NAME)
 st.header(ABOUT_HEADER)
