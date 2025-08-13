@@ -24,7 +24,6 @@ NO_DATA_INFO = 'No data available to display based on the filters'
 warnings.simplefilter(action='ignore', category=FutureWarning)
 st.set_page_config(
     page_title=APP_NAME,
-    page_icon="🌍",
     layout="wide"
 )
 
