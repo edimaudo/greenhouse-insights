@@ -6,7 +6,7 @@ st.header(CARBON_CHRONICLES_HEADER)
 
 st.markdown(
     """
-    CO₂ continues to be the most infamous greenhouse gas. This story highlights how different industries have contributed to its steady rise, with alarming trends in energy and transport.
+    CO₂ continues to be the most infamous greenhouse gas. This highlights how different industries have contributed to its steady rise, with alarming trends in energy and transport.
     """
 )
 
@@ -14,7 +14,6 @@ with st.sidebar:
     region_selection = st.multiselect('Region',continent,default=['Europe','Latin America and the Caribbean','Northern America'],placeholder=None)
     industry_selection = st.multiselect('Industry',industry,default=['Agriculture, Forestry and Fishing','Construction'],placeholder=None)
 
-# Filter for CO₂, and sidebar selection
 filtered_df = green_df[
     (green_df['Region'].isin(region_selection)) &
     (green_df['Gas Type']== 'Carbon dioxide') &
