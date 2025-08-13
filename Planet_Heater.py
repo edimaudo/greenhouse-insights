@@ -6,7 +6,7 @@ st.header(PLANET_HEATER_HEADER)
 
 st.markdown(
     """
-    As extreme weather intensifies, who contributes the most to the crisis? This story breaks down emissions across regions and industries to show where the heat is truly coming from.
+    As extreme weather intensifies, who contributes the most to the crisis? This breaks down emissions across regions and industries to show where the heat is truly coming from.
     """
 )
 
@@ -25,7 +25,6 @@ filtered_df = green_df[
 top_container = st.container()
 middle_container = st.container()
 bottom_container = st.container()
-prompt_container = st.container()
 
 
 with top_container:
@@ -58,7 +57,7 @@ with top_container:
             st.warning(NO_DATA_INFO)
 
 
-with bottom_container:
+with middle_container:
     sankey_data = filtered_df.groupby(['Region', 'Industry'])['Total'].sum().reset_index()
     if not emissions_by_industry.empty:
         all_nodes = list(pd.concat([sankey_data['Region'], sankey_data['Industry']]).unique())
@@ -114,5 +113,9 @@ with middle_container:
             st.warning(NO_DATA_INFO)
 
         
-with prompt_container:
+with bottom_container:
     st.write("")
+    ## prompt = " You are a community safety advisor. Based on the following crime" + str(crime_output) + " that occurred in " + str(premises_options) + " at " + str(hour_options) + " hours in " + str(neighbourhood_options) + " a neigbhorhood in Toronto, Ontario, " + "generate 3 practical safety recommendations for local residents."
+    #config.model.generate(prompt)
+    #prompt_output = config.model.generate_text(prompt)
+    #outcome_txt = st.text_area(label=" ",value=prompt_output,placeholder='')
