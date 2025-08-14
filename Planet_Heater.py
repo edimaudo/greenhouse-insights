@@ -1,5 +1,5 @@
-import config
 from utils import *
+
 
 st.title(APP_NAME)
 st.header(PLANET_HEATER_HEADER)
@@ -25,6 +25,7 @@ filtered_df = green_df[
 top_container = st.container()
 middle_container = st.container()
 bottom_container = st.container()
+prompt_container = st.container()
 
 
 with top_container:
@@ -57,7 +58,7 @@ with top_container:
             st.warning(NO_DATA_INFO)
 
 
-with middle_container:
+with bottom_container:
     sankey_data = filtered_df.groupby(['Region', 'Industry'])['Total'].sum().reset_index()
     if not emissions_by_industry.empty:
         all_nodes = list(pd.concat([sankey_data['Region'], sankey_data['Industry']]).unique())
@@ -113,9 +114,17 @@ with middle_container:
             st.warning(NO_DATA_INFO)
 
         
-with bottom_container:
-    st.write("")
-    ## prompt = " You are a community safety advisor. Based on the following crime" + str(crime_output) + " that occurred in " + str(premises_options) + " at " + str(hour_options) + " hours in " + str(neighbourhood_options) + " a neigbhorhood in Toronto, Ontario, " + "generate 3 practical safety recommendations for local residents."
-    #config.model.generate(prompt)
-    #prompt_output = config.model.generate_text(prompt)
-    #outcome_txt = st.text_area(label=" ",value=prompt_output,placeholder='')
+with prompt_container:
+    st.subheader("Greenhouse Gas Mitigation Strategy")
+    clicked = st.button("Generate Plan")
+    if clicked:
+        prompt = " You are an environmental expert focusing on climate change solutions, looking at these different regions " + str(region_selection)  + " in these industries " + str(industry_selection)  + ". Generate 3 practical recommendations that climate leaders in these regions can take to reduce " + str(gas_type_selection) + " emissions "
+    
+        client = genai.Client() #os.getenv(api_key)
+        response = client.models.generate_content(
+        model="gemini-2.5-flash", 
+        contents=prompt
+        )
+    
+        outcome_txt = st.text_area(label=" ",value=response.text,placeholder='', disabled=True, height="content")
+
