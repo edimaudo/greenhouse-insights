@@ -6,13 +6,13 @@ st.header(CARBON_CHRONICLES_HEADER)
 
 st.markdown(
     """
-    CO₂ continues to be the most infamous greenhouse gas. This highlights how different industries have contributed to its steady rise, with alarming trends in energy and transport.
+    CO₂ continues to be the most infamous greenhouse gas. This highlights how different industries have contributed to its steady rise, with alarming trends in transport.
     """
 )
 
 with st.sidebar:
     region_selection = st.multiselect('Region',continent,default=['Europe','Latin America and the Caribbean','Northern America'],placeholder=None)
-    industry_selection = st.multiselect('Industry',industry,default=['Agriculture, Forestry and Fishing','Construction'],placeholder=None)
+    industry_selection = st.multiselect('Industry',industry,default=['Agriculture, Forestry and Fishing','Construction', 'Transportation and Storage'],placeholder=None)
 
 filtered_df = green_df[
     (green_df['Region'].isin(region_selection)) &
@@ -92,3 +92,18 @@ with middle_container:
             st.plotly_chart(fig_bubble_region, use_container_width=True)
         else:
             st.warning(NO_DATA_INFO)  
+
+
+with prompt_container:
+    st.subheader("Policy Assistant")
+    clicked = st.button("Generate Insights")
+    if clicked:
+        prompt = " You are an environmental expert focusing on climate change solutions, looking at these different regions " + str(region_selection)  + " and in these industries " + str(industry_selection)  + " . Generate 3 practical recommendations that climate leaders in these regions can take to reduce " + "Carbon dioxide" + " emissions "
+    
+        client = genai.Client() 
+        response = client.models.generate_content(
+        model="gemini-2.5-flash", 
+        contents=prompt
+        )
+    
+        outcome_txt = st.text_area(label=" ",value=response.text,placeholder='', disabled=True, height='100px')
