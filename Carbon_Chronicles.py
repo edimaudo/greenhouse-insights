@@ -1,5 +1,5 @@
-import config
 from utils import *
+
 
 st.title(APP_NAME)
 st.header(CARBON_CHRONICLES_HEADER)
