@@ -118,13 +118,13 @@ with prompt_container:
     st.subheader("Greenhouse Gas Mitigation Strategy")
     clicked = st.button("Generate Plan")
     if clicked:
-        prompt = " You are an environmental expert focusing on climate change solutions, looking at these different regions " + str(region_selection)  + " in these industries " + str(industry_selection)  + ". Generate 3 practical recommendations that climate leaders in these regions can take to reduce " + str(gas_type_selection) + " emissions "
+        prompt = " You are an environmental expert focusing on climate change solutions, looking at these different regions " + str(region_selection)  + " and in these industries " + str(industry_selection)  + " . Generate 3 practical recommendations that climate leaders in these regions can take to reduce " + str(gas_type_selection) + " emissions "
     
-        client = genai.Client() #os.getenv(api_key)
+        client = genai.Client() 
         response = client.models.generate_content(
         model="gemini-2.5-flash", 
         contents=prompt
         )
     
-        outcome_txt = st.text_area(label=" ",value=response.text,placeholder='', disabled=True, height="content")
+        outcome_txt = st.text_area(label=" ",value=response.text,placeholder='', disabled=True)
 
