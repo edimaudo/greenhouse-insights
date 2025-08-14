@@ -10,6 +10,8 @@ import random
 import plotly.express as px
 import plotly.graph_objects as go
 from google import genai
+from dotenv import load_dotenv, dotenv_values 
+load_dotenv() 
 
 """
 Dashboard Information
