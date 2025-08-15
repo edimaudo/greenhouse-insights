@@ -6,7 +6,8 @@ st.header(GREENER_FASTER_HEADER)
 st.markdown(
     """
     Some regions and industries are managing to lower their greenhouse gas emissions over time — but how do they compare to others? 
-    This tracks relative emission reductions within industries and across regions, highlighting who is making the greatest progress (not just who pollutes the least).
+    This tracks relative emission reductions within industries and across regions, highlighting who is making the greatest progress 
+    (not just who pollutes the least).
     """
 )
 top_container = st.container()
@@ -26,13 +27,17 @@ filtered_df = green_df[
     (green_df['Industry'].isin(industry_selection))
 ]
 
-      # prompt = " You are a community safety advisor. Based on the following crime" + str(crime_output) + " that occurred in " + str(premises_options) + " at " + str(hour_options) + " hours in " + str(neighbourhood_options) + " a neigbhorhood in Toronto, Ontario, " + "generate 3 practical safety recommendations for local residents."
+
+with top_container:
+    col1, col2 = st.columns(2)
 
 with prompt_container:
     st.subheader("Policy Assistant")
     clicked = st.button("Generate Insights")
     if clicked:
-        prompt = " You are an environmental expert focusing on reducing greenhouse gases quickly, looking at these different regions " + str(region_selection)  + " and in these industries " + str(industry_selection)  + " . Generate 3 practical recommendations that climate leaders in these regions can take to reduce " + str(gas_type_selection) + " emissions "
+        prompt = " You are an environmental expert focusing on reducing greenhouse gases quickly using technology and environmentally-friendly solutions, " \
+        "looking at these different regions " + str(region_selection)  + " and in these industries " + str(industry_selection)  + " . Generate 3 practical recommendations that " \
+        "climate leaders in these regions can take to reduce " + str(gas_type_selection) + " emissions "
     
         client = genai.Client() 
         response = client.models.generate_content(
