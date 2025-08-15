@@ -118,7 +118,7 @@ with prompt_container:
     st.subheader("Policy Assistant")
     clicked = st.button("Generate Insights")
     if clicked:
-        prompt = " You are an environmental expert focusing on climate change solutions, looking at these different regions " + str(region_selection)  + " and in these industries " + str(industry_selection)  + " . Generate 3 practical recommendations that climate leaders in these regions can take to reduce " + str(gas_type_selection) + " emissions "
+        prompt = " You are an environmental expert focusing on climate change solutions especially extreme weather events, looking at these different regions " + str(region_selection)  + " and in these industries " + str(industry_selection)  + " . Generate 3 practical recommendations that climate leaders in these regions can take to reduce " + str(gas_type_selection) + " emissions "
     
         client = genai.Client() 
         response = client.models.generate_content(
