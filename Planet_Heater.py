@@ -13,12 +13,12 @@ st.markdown(
 with st.sidebar:
     region_selection = st.multiselect('Region',continent,default=['Europe','Latin America and the Caribbean','Northern America'],placeholder=None)
     industry_selection = st.multiselect('Industry',industry,default=['Agriculture, Forestry and Fishing','Construction'],placeholder=None)
-    gas_type_selection = st.selectbox('Gas Type',gas_type,placeholder='Carbon dioxide')
+    gas_type_selection = st.multiselect('Gas Type',gas_type,default="Carbon dioxide",placeholder='Carbon dioxide')
 
 # Filter data based on selections
 filtered_df = green_df[
     (green_df['Region'].isin(region_selection)) &
-    (green_df['Gas Type']==(gas_type_selection)) &
+    (green_df['Gas Type'].isin(gas_type_selection)) &
     (green_df['Industry'].isin(industry_selection))
 ]
 
@@ -115,8 +115,8 @@ with middle_container:
 
         
 with prompt_container:
-    st.subheader("Greenhouse Gas Mitigation Strategy")
-    clicked = st.button("Generate Plan")
+    st.subheader("Policy Assistant")
+    clicked = st.button("Generate Insights")
     if clicked:
         prompt = " You are an environmental expert focusing on climate change solutions, looking at these different regions " + str(region_selection)  + " and in these industries " + str(industry_selection)  + " . Generate 3 practical recommendations that climate leaders in these regions can take to reduce " + str(gas_type_selection) + " emissions "
     
@@ -126,5 +126,5 @@ with prompt_container:
         contents=prompt
         )
     
-        outcome_txt = st.text_area(label=" ",value=response.text,placeholder='', disabled=True)
+        outcome_txt = st.text_area(label=" ",value=response.text,placeholder='', disabled=True, height='500px')
 
