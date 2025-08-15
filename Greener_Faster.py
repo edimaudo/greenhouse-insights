@@ -12,13 +12,12 @@ st.markdown(
 )
 top_container = st.container()
 middle_container = st.container()
-bottom_container = st.container()
 prompt_container = st.container()
 
 with st.sidebar:
     region_selection = st.multiselect('Region',continent,default=['Europe','Latin America and the Caribbean','Northern America'],placeholder=None)
     industry_selection = st.multiselect('Industry',industry,default=['Agriculture, Forestry and Fishing','Construction'],placeholder=None)
-    gas_type_selection = st.selectbox('Gas Type',gas_type,default="Carbon dioxide")
+    gas_type_selection = st.selectbox('Gas Type',gas_type,placeholder="Carbon dioxide")
 
 # Filter data based on selections
 filtered_df = green_df[
@@ -27,9 +26,57 @@ filtered_df = green_df[
     (green_df['Industry'].isin(industry_selection))
 ]
 
+latest_year = filtered_df['Year'].max()
+earliest_year = filtered_df['Year'].min()
+df = filtered_df[filtered_df['Year'].isin([earliest_year, latest_year])]
 
 with top_container:
     col1, col2 = st.columns(2)
+    with col1:
+        pivot_df = df.pivot_table(index='Region', columns='Year', values='Total', aggfunc='sum').dropna()
+        if not pivot_df.empty and len(pivot_df.columns) == 2:
+            pivot_df['% change'] = (pivot_df[latest_year] - pivot_df[earliest_year]) / pivot_df[earliest_year] * 100
+            pivot_df = pivot_df.reset_index()
+            fig = px.bar(pivot_df,x='% change', y='Region', color='% change',hover_name='Region',
+                         title = f'Region Emissions vs. Rate of Increase ({earliest_year}-{latest_year})')
+            st.plotly_chart(fig, use_container_width=True)
+        else:
+            st.warning(NO_DATA_INFO) 
+
+    with col2:
+        pivot_df = df.pivot_table(index='Industry', columns='Year', values='Total', aggfunc='sum').dropna()
+        if not pivot_df.empty and len(pivot_df.columns) == 2:
+            pivot_df['% change'] = (pivot_df[latest_year] - pivot_df[earliest_year]) / pivot_df[earliest_year] * 100
+            pivot_df = pivot_df.reset_index()
+            fig = px.bar(pivot_df,x='% change', y='Industry', color='% change',hover_name='Industry',
+                         title = f'Industry Emissions vs. Rate of Increase ({earliest_year}-{latest_year})')
+            st.plotly_chart(fig, use_container_width=True)
+        else:
+            st.warning(NO_DATA_INFO)
+
+with middle_container:
+    agg = (
+    df
+    .groupby(['Industry', 'Region', 'Year'], as_index=False)['Total']
+    .sum()
+    )
+    
+    pivot_df = agg.pivot(index=['Industry', 'Region'], columns='Year', values='Total')
+    if not pivot_df.empty:
+        pivot_df['% change'] = ((pivot_df[latest_year] - pivot_df[earliest_year]) /pivot_df[earliest_year] * 100)
+        heatmap_data = pivot_df['% change'].unstack('Region')
+        fig = px.imshow(
+            heatmap_data,
+            x=heatmap_data.columns,   # Regions
+            y=heatmap_data.index,     # Industries
+            color_continuous_scale='Viridis',
+            labels=dict(x="Region", y="Industry", color="% Change")
+        )
+        fig.update_layout(width=700, height=700)
+        st.plotly_chart(fig, use_container_width=True)
+    else:
+        st.warning(NO_DATA_INFO)
+
 
 with prompt_container:
     st.subheader("Policy Assistant")
@@ -45,4 +92,4 @@ with prompt_container:
         contents=prompt
         )
     
-        outcome_txt = st.text_area(label=" ",value=response.text,placeholder='', disabled=True, height='500px')
+        outcome_txt = st.text_area(label=" ",value=response.text,placeholder='', disabled=True)
