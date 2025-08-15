@@ -66,7 +66,7 @@ with top_container:
 
 with middle_container:
     latest_year = filtered_df['Year'].max()
-    previous_year = latest_year - 1
+    previous_year = filtered_df['Year'].min()
     df_bubble = filtered_df[filtered_df['Year'].isin([previous_year, latest_year])]
     col1, col2 = st.columns(2)
     with col1:
