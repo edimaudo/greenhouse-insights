@@ -104,7 +104,7 @@ with prompt_container:
     clicked = st.button("Generate Insights")
     if clicked:
         prompt = " You are an environmental expert focusing on building systems to curb carbon dixoide emisssions, " \
-        "looking at these different regions " + str(region_selection)  + " and in these industries " + str(industry_selection)  + " . "
+        "looking at these different regions " + str(region_selection)  + " and in these industries " + str(industry_selection)  + " . " \
         "Generate 3 practical recommendations that climate leaders in these regions can take to reduce " + "Carbon dioxide" + " emissions "
     
         client = genai.Client() 
@@ -113,4 +113,4 @@ with prompt_container:
         contents=prompt
         )
     
-        outcome_txt = st.text_area(label=" ",value=response.text,placeholder='', disabled=True, height='500px')
+        outcome_txt = st.text_area(label=" ",value=response.text,placeholder='', disabled=True)
