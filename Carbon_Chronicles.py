@@ -106,4 +106,4 @@ with prompt_container:
         contents=prompt
         )
     
-        outcome_txt = st.text_area(label=" ",value=response.text,placeholder='', disabled=True, height='100px')
+        outcome_txt = st.text_area(label=" ",value=response.text,placeholder='', disabled=True, height='500px')
