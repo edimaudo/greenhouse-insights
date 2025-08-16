@@ -15,6 +15,6 @@ Focusing on the theme **Nature's Fury** this app leverages [streamlit](https://s
 2. Run the app
 
    ```
-   $ streamlit run app.py
+   $ streamlit run streamlit_app.py
    ```
    ```
