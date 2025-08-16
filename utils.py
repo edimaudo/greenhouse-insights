@@ -16,7 +16,7 @@ load_dotenv()
 """
 Dashboard Information
 """
-APP_NAME = 'Greenhouse Insights'
+APP_NAME = 'Greenhouse Gas Emissions Insights'
 ABOUT_HEADER = 'About'
 PLANET_HEATER_HEADER = "Who's Heating the Planet?"
 CARBON_CHRONICLES_HEADER = 'Carbon Chronicles: Rise of CO₂'
