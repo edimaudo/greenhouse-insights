@@ -63,6 +63,7 @@ with middle_container:
     
     pivot_df = agg.pivot(index=['Industry', 'Region'], columns='Year', values='Total')
     if not pivot_df.empty:
+        st.markdown("**Rate of Increase by Industry & Region Emissions** " + str(earliest_year) + "-" + str(latest_year))
         pivot_df['% change'] = ((pivot_df[latest_year] - pivot_df[earliest_year]) /pivot_df[earliest_year] * 100)
         heatmap_data = pivot_df['% change'].unstack('Region')
         fig = px.imshow(
@@ -70,7 +71,8 @@ with middle_container:
             x=heatmap_data.columns,   # Regions
             y=heatmap_data.index,     # Industries
             color_continuous_scale='Viridis',
-            labels=dict(x="Region", y="Industry", color="% Change")
+            labels=dict(x="Region", y="Industry", color="% Change", 
+                        title=f'Rate of Increase by Industry & Region ({earliest_year}-{latest_year})')
         )
         fig.update_layout(width=700, height=700)
         st.plotly_chart(fig, use_container_width=True)
